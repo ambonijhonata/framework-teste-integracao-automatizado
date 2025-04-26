@@ -1,0 +1,18 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "set CUCUMBER_PUBLISH_ENABLED=false && cucumber-js --format json:reports/cucumber-report.json --format progress --force-exit",
+    "report": "node generate-report.js",
+    "test:dev": "npm run test & npm run report"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "assert": "^2.1.0",
+    "cucumber-html-reporter": "^7.2.0"
+  }
+}
