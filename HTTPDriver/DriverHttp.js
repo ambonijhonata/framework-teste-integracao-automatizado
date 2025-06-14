@@ -1,8 +1,24 @@
 
-class DriverHTTP {
+class DriverHTTP {    
 
     constructor(baseUrl = 'http://localhost:8080') {
         this.baseUrl = baseUrl;
+    }
+
+    setToken(token) {
+        this.token = token;
+    }
+
+    #buildHeaders() {
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (this.token) {
+            headers['Authorization'] = `Bearer ${this.token}`;
+        }
+
+        return headers;
     }
 
     async POST(endpoint, body) {
@@ -10,9 +26,7 @@ class DriverHTTP {
 
         const options = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: this.#buildHeaders(), 
             body: JSON.stringify(body)
         };
 
@@ -20,8 +34,6 @@ class DriverHTTP {
             const response = await fetch(url, options);
             
             if (!response.ok) {
-                console.log("Deu erro na requisicao")
-                console.log(response)
                 const errorData = await response.json().catch(() => null);
                 throw new Error(
                     `Erro na requisição: ${url}\n` +
@@ -33,11 +45,44 @@ class DriverHTTP {
             const responseData = await response.json();
             return responseData;
             
-        } catch (error) {
-            console.error('Erro na requisição POST:', error);
+        } catch (error) {            
             throw error;
         }
     }
+
+    async GET(endpoint) {
+        let url = `${this.baseUrl}/${endpoint}`;
+        
+        const options = {
+            method: 'GET',
+            headers: this.#buildHeaders()
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const status = response.status;
+
+            if (!response.ok) {                
+                const errorData = await response.json().catch(() => null);
+                throw new Error(
+                    `Erro na requisição: ${url}\n` +
+                    `Status: ${response.status}\n` +
+                    `Mensagem: ${errorData?.message || 'Sem mensagem de erro'}`
+                );
+            }
+            
+            if (status === 204) {
+                return null;
+            }
+
+            const responseData = await response.json();
+            return {status, data: responseData};            
+        } catch (error) {
+            console.error('Erro na requisição GET:', error);
+            throw error;
+        }
+    }
+    
 
 }
 

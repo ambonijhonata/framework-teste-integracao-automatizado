@@ -4,102 +4,73 @@
     "elements": [
       {
         "description": "",
-        "id": "testes-da-calculadora-via-http;fazer-uma-soma-via-post",
+        "id": "testes-da-calculadora-via-http;listar-clientes",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Fazer uma soma via POST",
+        "name": "Listar clientes",
         "steps": [
           {
-            "arguments": [],
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 929699
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "EMAIL",
+                      "SENHA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "email@gmail.com",
+                      "senha123"
+                    ]
+                  }
+                ]
+              }
+            ],
             "keyword": "Given ",
             "line": 4,
-            "name": "Eu tenho um DriverHTTP inicializado",
+            "name": "Eu realizo o login com o usuario",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:10"
+              "location": "features\\step_definitions\\BaseSteps.js:17"
             },
             "result": {
               "status": "passed",
-              "duration": 1024399
+              "duration": 131455899
             }
           },
           {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "BODY"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{ \"a\": 20, \"b\": 2 }"
-                    ]
-                  }
-                ]
-              }
-            ],
+            "arguments": [],
             "keyword": "When ",
-            "line": 5,
-            "name": "Eu faco uma requisição POST para o endpoint 'api/somar'",
+            "line": 7,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente'",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:14"
+              "location": "features\\step_definitions\\BaseSteps.js:44"
             },
             "result": {
               "status": "passed",
-              "duration": 37783000
+              "duration": 14973799
             }
           },
           {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "RESPOSTA"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{\"resultado\": 22}"
-                    ]
-                  }
-                ]
-              }
-            ],
+            "arguments": [],
             "keyword": "Then ",
             "line": 8,
-            "name": "O corpo da resposta deve conter",
+            "name": "A resposta deve conter o status 200",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:25"
+              "location": "features\\step_definitions\\BaseSteps.js:56"
             },
             "result": {
               "status": "passed",
-              "duration": 693999
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "testes-da-calculadora-via-http;fazer-uma-subtracao-via-post",
-        "keyword": "Scenario",
-        "line": 12,
-        "name": "Fazer uma subtracao via POST",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 13,
-            "name": "Eu tenho um DriverHTTP inicializado",
-            "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 74600
+              "duration": 241399
             }
           },
           {
@@ -108,106 +79,101 @@
                 "rows": [
                   {
                     "cells": [
-                      "BODY"
+                      "RESPOSTA"
                     ]
                   },
                   {
                     "cells": [
-                      "{ \"a\": 20, \"b\": 2 }"
+                      "[{\"codigo\": 4,\"nome\": \"Michela Graciano\"},{\"codigo\": 6, \"nome\": \"Jhonata Vieira Amboni\"}]"
                     ]
                   }
                 ]
               }
             ],
-            "keyword": "When ",
+            "keyword": "And ",
+            "line": 9,
+            "name": "O corpo da resposta deve conter",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:65"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1032000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "testes-da-calculadora-via-http;listar-cliente-pelo-nome",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Listar cliente pelo nome",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 68099
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "EMAIL",
+                      "SENHA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "email@gmail.com",
+                      "senha123"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
             "line": 14,
-            "name": "Eu faco uma requisição POST para o endpoint 'api/subtrair'",
+            "name": "Eu realizo o login com o usuario",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:14"
+              "location": "features\\step_definitions\\BaseSteps.js:17"
             },
             "result": {
               "status": "passed",
-              "duration": 4509799
+              "duration": 89133000
             }
           },
           {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "RESPOSTA"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{\"resultado\": 18}"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "Then ",
+            "arguments": [],
+            "keyword": "When ",
             "line": 17,
-            "name": "O corpo da resposta deve conter",
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=jhonata'",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:25"
+              "location": "features\\step_definitions\\BaseSteps.js:44"
             },
             "result": {
               "status": "passed",
-              "duration": 185999
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "testes-da-calculadora-via-http;fazer-uma-multiplicacao-via-post",
-        "keyword": "Scenario",
-        "line": 21,
-        "name": "Fazer uma multiplicacao via POST",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 22,
-            "name": "Eu tenho um DriverHTTP inicializado",
-            "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 61200
+              "duration": 10487100
             }
           },
           {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "BODY"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{ \"a\": 20, \"b\": 2 }"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "When ",
-            "line": 23,
-            "name": "Eu faco uma requisição POST para o endpoint 'api/multiplicar'",
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "A resposta deve conter o status 200",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:14"
+              "location": "features\\step_definitions\\BaseSteps.js:56"
             },
             "result": {
               "status": "passed",
-              "duration": 3067000
+              "duration": 220400
             }
           },
           {
@@ -221,101 +187,22 @@
                   },
                   {
                     "cells": [
-                      "{\"resultado\": 40}"
+                      "[{\"codigo\": 6, \"nome\": \"Michela Vieira Amboni\"}]"
                     ]
                   }
                 ]
               }
             ],
-            "keyword": "Then ",
-            "line": 26,
+            "keyword": "And ",
+            "line": 19,
             "name": "O corpo da resposta deve conter",
             "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:25"
+              "location": "features\\step_definitions\\BaseSteps.js:65"
             },
             "result": {
-              "status": "passed",
-              "duration": 185099
-            }
-          }
-        ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "testes-da-calculadora-via-http;fazer-uma-divisao-via-post",
-        "keyword": "Scenario",
-        "line": 30,
-        "name": "Fazer uma divisao via POST",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 31,
-            "name": "Eu tenho um DriverHTTP inicializado",
-            "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:10"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 257600
-            }
-          },
-          {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "BODY"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{ \"a\": 20, \"b\": 2 }"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "When ",
-            "line": 32,
-            "name": "Eu faco uma requisição POST para o endpoint 'api/dividir'",
-            "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2938199
-            }
-          },
-          {
-            "arguments": [
-              {
-                "rows": [
-                  {
-                    "cells": [
-                      "RESPOSTA"
-                    ]
-                  },
-                  {
-                    "cells": [
-                      "{\"resultado\": 10}"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "keyword": "Then ",
-            "line": 35,
-            "name": "O corpo da resposta deve conter",
-            "match": {
-              "location": "features\\step_definitions\\calculadora.step.js:25"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 117300
+              "status": "failed",
+              "duration": 3941900,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n\n  [\n    {\n      codigo: 6,\n\u001b[32m+\u001b[39m     nome: 'Jhonata Vieira Amboni'\n\u001b[31m-\u001b[39m     nome: 'Michela Vieira Amboni'\n    }\n  ]\n    + expected - actual\n\n     [\n       {\n         \"codigo\": 6\n    -    \"nome\": \"Jhonata Vieira Amboni\"\n    +    \"nome\": \"Michela Vieira Amboni\"\n       }\n     ]\n\n    at World.<anonymous> (C:\\framework\\features\\step_definitions\\BaseSteps.js:69:14)"
             }
           }
         ],
@@ -328,6 +215,6 @@
     "keyword": "Feature",
     "name": "Testes da Calculadora via HTTP",
     "tags": [],
-    "uri": "features\\calculadora.feature"
+    "uri": "features\\Cliente.feature"
   }
 ]
