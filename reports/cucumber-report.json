@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "testes-da-calculadora-via-http;listar-clientes",
+        "id": "testes-da-calculadora-via-http;listar-cliente-pelo-nome",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Listar clientes",
+        "name": "Listar cliente pelo nome",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 929699
+              "duration": 979100
             }
           },
           {
@@ -40,24 +40,24 @@
             "line": 4,
             "name": "Eu realizo o login com o usuario",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:17"
+              "location": "features\\step_definitions\\BaseSteps.js:20"
             },
             "result": {
               "status": "passed",
-              "duration": 131455899
+              "duration": 101068300
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 7,
-            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente'",
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=michela'",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:44"
+              "location": "features\\step_definitions\\BaseSteps.js:126"
             },
             "result": {
               "status": "passed",
-              "duration": 14973799
+              "duration": 5138800
             }
           },
           {
@@ -66,11 +66,11 @@
             "line": 8,
             "name": "A resposta deve conter o status 200",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:56"
+              "location": "features\\step_definitions\\BaseSteps.js:149"
             },
             "result": {
               "status": "passed",
-              "duration": 241399
+              "duration": 587499
             }
           },
           {
@@ -84,7 +84,7 @@
                   },
                   {
                     "cells": [
-                      "[{\"codigo\": 4,\"nome\": \"Michela Graciano\"},{\"codigo\": 6, \"nome\": \"Jhonata Vieira Amboni\"}]"
+                      "[{\"codigo\": 4, \"nome\": \"Michela Graciano\"}]"
                     ]
                   }
                 ]
@@ -94,11 +94,11 @@
             "line": 9,
             "name": "O corpo da resposta deve conter",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:65"
+              "location": "features\\step_definitions\\BaseSteps.js:161"
             },
             "result": {
               "status": "passed",
-              "duration": 1032000
+              "duration": 1257200
             }
           }
         ],
@@ -107,17 +107,17 @@
       },
       {
         "description": "",
-        "id": "testes-da-calculadora-via-http;listar-cliente-pelo-nome",
+        "id": "testes-da-calculadora-via-http;cadastrar-cliente",
         "keyword": "Scenario",
         "line": 13,
-        "name": "Listar cliente pelo nome",
+        "name": "Cadastrar cliente",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 68099
+              "duration": 36300
             }
           },
           {
@@ -143,37 +143,130 @@
             "line": 14,
             "name": "Eu realizo o login com o usuario",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:17"
+              "location": "features\\step_definitions\\BaseSteps.js:20"
             },
             "result": {
               "status": "passed",
-              "duration": 89133000
+              "duration": 69920900
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 17,
-            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=jhonata'",
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste cadastro'",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:44"
+              "location": "features\\step_definitions\\BaseSteps.js:126"
             },
             "result": {
               "status": "passed",
-              "duration": 10487100
+              "duration": 3246200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "Armazeno o valor do campo '$[0].codigo' da resposta em uma variavel chamada 'codigo'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 900499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "Eu faco uma requisição DELETE para o endpoint 'api/cliente/{codigo}' se a variavel 'codigo' existir",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5821300
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "BODY"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "{\"nome\": \"Teste cadastro\"}"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 20,
+            "name": "Eu faco uma requisição POST para o endpoint 'api/cliente'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:70"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4263199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 23,
+            "name": "Armazeno o valor do campo '$.codigo' da resposta em uma variavel chamada 'codigoCadastrado'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 353100
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 18,
+            "line": 24,
             "name": "A resposta deve conter o status 200",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:56"
+              "location": "features\\step_definitions\\BaseSteps.js:149"
             },
             "result": {
               "status": "passed",
-              "duration": 220400
+              "duration": 226999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste cadastro'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2453800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "A resposta deve conter o status 200",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:149"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 202099
             }
           },
           {
@@ -187,22 +280,428 @@
                   },
                   {
                     "cells": [
-                      "[{\"codigo\": 6, \"nome\": \"Michela Vieira Amboni\"}]"
+                      "[{\"codigo\": \"{codigoCadastrado}\", \"nome\": \"Teste cadastro\"}]"
                     ]
                   }
                 ]
               }
             ],
             "keyword": "And ",
-            "line": 19,
+            "line": 27,
             "name": "O corpo da resposta deve conter",
             "match": {
-              "location": "features\\step_definitions\\BaseSteps.js:65"
+              "location": "features\\step_definitions\\BaseSteps.js:161"
             },
             "result": {
-              "status": "failed",
-              "duration": 3941900,
-              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n\n  [\n    {\n      codigo: 6,\n\u001b[32m+\u001b[39m     nome: 'Jhonata Vieira Amboni'\n\u001b[31m-\u001b[39m     nome: 'Michela Vieira Amboni'\n    }\n  ]\n    + expected - actual\n\n     [\n       {\n         \"codigo\": 6\n    -    \"nome\": \"Jhonata Vieira Amboni\"\n    +    \"nome\": \"Michela Vieira Amboni\"\n       }\n     ]\n\n    at World.<anonymous> (C:\\framework\\features\\step_definitions\\BaseSteps.js:69:14)"
+              "status": "passed",
+              "duration": 361400
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "testes-da-calculadora-via-http;atualizar-cliente",
+        "keyword": "Scenario",
+        "line": 31,
+        "name": "Atualizar cliente",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 28900
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "EMAIL",
+                      "SENHA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "email@gmail.com",
+                      "senha123"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 32,
+            "name": "Eu realizo o login com o usuario",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61138499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 35,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste edicao'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3879500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 36,
+            "name": "Armazeno o valor do campo '$[0].codigo' da resposta em uma variavel chamada 'codigo'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 514999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "Eu faco uma requisição DELETE para o endpoint 'api/cliente/{codigo}' se a variavel 'codigo' existir",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4140399
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "BODY"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "{\"nome\": \"Teste edicao\"}"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 38,
+            "name": "Eu faco uma requisição POST para o endpoint 'api/cliente'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:70"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5315899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 41,
+            "name": "Armazeno o valor do campo '$.codigo' da resposta em uma variavel chamada 'codigoCadastrado'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 442199
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "BODY"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "{\"nome\": \"Teste edicao atualizado\"}"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 42,
+            "name": "Eu faco uma requisição PUT para o endpoint 'api/cliente/{codigoCadastrado}'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:111"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11087699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 45,
+            "name": "A resposta deve conter o status 200",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:149"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 433500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 46,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste edicao'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10937900
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "RESPOSTA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "[{\"codigo\": \"{codigoCadastrado}\", \"nome\": \"Teste edicao atualizado\"}]"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 47,
+            "name": "O corpo da resposta deve conter",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:161"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 470699
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "testes-da-calculadora-via-http;excluir-cliente",
+        "keyword": "Scenario",
+        "line": 51,
+        "name": "Excluir cliente",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 29100
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "EMAIL",
+                      "SENHA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "email@gmail.com",
+                      "senha123"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 52,
+            "name": "Eu realizo o login com o usuario",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61748100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 55,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste exclusao'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2793400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 56,
+            "name": "Armazeno o valor do campo '$[0].codigo' da resposta em uma variavel chamada 'codigo'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 303699
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "BODY"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "{\"nome\": \"Teste exclusao\"}"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 57,
+            "name": "Eu faco uma requisição POST para o endpoint 'api/cliente' se a variavel 'codigo' nao existir",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:88"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4169100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 60,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste exclusao'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2366899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 61,
+            "name": "Armazeno o valor do campo '$[0].codigo' da resposta em uma variavel chamada 'codigo'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 482500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 62,
+            "name": "Eu faco uma requisição DELETE para o endpoint 'api/cliente/{codigo}'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4890899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 63,
+            "name": "A resposta deve conter o status 204",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:149"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 246300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 64,
+            "name": "Eu faco uma requisição GET para o endpoint 'api/cliente?nome=Teste exclusao'",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2321700
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "RESPOSTA"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "{\"codigo\": \"{codigo}\", \"nome\": \"Teste exclusao\"}"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 65,
+            "name": "O corpo da resposta nao deve conter",
+            "match": {
+              "location": "features\\step_definitions\\BaseSteps.js:172"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 396299
             }
           }
         ],
