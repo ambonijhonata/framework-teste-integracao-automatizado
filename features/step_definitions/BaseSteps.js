@@ -34,10 +34,8 @@ Given('Eu realizo o login com o usuario',
 
 When('Eu faco uma requisição DELETE para o endpoint {string}', 
     async function (endpoint) {
-      try {
-        console.log("Endpoint antes do replace: " + endpoint);
-        endpoint = replaceVariablesEndpoint(endpoint);
-        console.log("Endpoint depois do replace: " + endpoint);
+      try {        
+        endpoint = replaceVariablesEndpoint(endpoint);        
         const endpointReturn = await driver.DELETE(endpoint);
         response = endpointReturn.data;
         status = endpointReturn.status;        
@@ -52,10 +50,8 @@ When('Eu faco uma requisição DELETE para o endpoint {string} se a variavel {st
       
         const variavelExiste = variables.has(variavel);        
         if(variavelExiste) {
-          try {
-            console.log("Endpoint antes do replace: " + endpoint);
-            endpoint = replaceVariablesEndpoint(endpoint);
-            console.log("Endpoint depois do replace: " + endpoint);
+          try {            
+            endpoint = replaceVariablesEndpoint(endpoint);            
             const endpointReturn = await driver.DELETE(endpoint);
             response = endpointReturn.data;
             status = endpointReturn.status;        
@@ -71,10 +67,8 @@ When('Eu faco uma requisição POST para o endpoint {string}',
     async function (endpoint, dataTable) {
       try {
 
-        let body = JSON.parse(dataTable.hashes()[0].BODY);
-        console.log("body sem replace: " + JSON.stringify(body));
-        body = replaceVariables(body);
-        console.log("body sem replace: " + JSON.stringify(body));
+        let body = JSON.parse(dataTable.hashes()[0].BODY);        
+        body = replaceVariables(body);        
 
         const endpointReturn  = await driver.POST(endpoint, body);       
         response = endpointReturn.data;
@@ -89,13 +83,10 @@ When('Eu faco uma requisição POST para o endpoint {string} se a variavel {stri
     async function (endpoint, variavel, dataTable) {
       try {
 
-        const variavelExiste = variables.has(variavel);
-        console.log("POST Variavel existe: " + variavelExiste);
+        const variavelExiste = variables.has(variavel);        
         if(!variavelExiste) {
-          let body = JSON.parse(dataTable.hashes()[0].BODY);
-          console.log("body sem replace: " + JSON.stringify(body));
-          body = replaceVariables(body);
-          console.log("body sem replace: " + JSON.stringify(body));
+          let body = JSON.parse(dataTable.hashes()[0].BODY);          
+          body = replaceVariables(body);        
 
           const endpointReturn  = await driver.POST(endpoint, body);       
           response = endpointReturn.data;
@@ -112,8 +103,7 @@ When('Eu faco uma requisição PUT para o endpoint {string}',
     async function (endpoint, dataTable) {
       try {        
         let body = JSON.parse(dataTable.hashes()[0].BODY);        
-        endpoint = replaceVariablesEndpoint(endpoint);
-        console.log('ENDPOINT PUT: ' + endpoint)
+        endpoint = replaceVariablesEndpoint(endpoint);        
         const endpointReturn  = await driver.PUT(endpoint, body);       
         response = endpointReturn.data;
         status = endpointReturn.status;   
@@ -126,6 +116,7 @@ When('Eu faco uma requisição PUT para o endpoint {string}',
 When('Eu faco uma requisição GET para o endpoint {string}',
     async function (endpoint) {
       try {
+        endpoint = replaceVariablesEndpoint(endpoint);
         const endpointReturn = await driver.GET(endpoint);
         response = endpointReturn.data;
         status = endpointReturn.status;        
@@ -135,22 +126,34 @@ When('Eu faco uma requisição GET para o endpoint {string}',
       }
 });
 
+When('Eu faco uma requisição GET para o endpoint {string} se a variavel {string} nao existir',
+    async function (endpoint, variavel) {
+      try {
+        const variavelExiste = variables.has(variavel);
+        if(!variavelExiste) {
+          const endpointReturn = await driver.GET(endpoint);
+          response = endpointReturn.data;
+          status = endpointReturn.status;        
+        }
+        
+      } catch (err) {
+        error = err;
+        console.error('Erro na requisição:', err);
+      }
+});
+
 When('Armazeno o valor do campo {string} da resposta em uma variavel chamada {string}',
   async function (jsonPath, variableName) {
-      const retorno = getValueByJsonPath(jsonPath, response);
-      console.log(`Valor encontrado no JSONPath ${jsonPath}:`, retorno);
+      const retorno = getValueByJsonPath(jsonPath, response);      
       if(retorno){
-        variables.set(variableName, retorno);
-        console.log(`Valor armazenado na variável ${variableName}:`, retorno);  
+        variables.set(variableName, retorno);        
       }      
   }
 )
 
 Then('A resposta deve conter o status {int}', 
     function (statusCode) {  
-      
-      console.log(`Status esperado: ${statusCode}`);
-      console.log(`Status retornado: ${status}`);
+            
       if (error) {
         assert.fail(`Erro na requisição: ${error.message}`);
       } else {                
@@ -163,9 +166,7 @@ Then('O corpo da resposta deve conter',
 
       let expected = JSON.parse(dataTable.hashes()[0].RESPOSTA);            
       expected = replaceVariables(expected);
-
-      console.log("Resposta esperada: " + JSON.stringify(expected));
-      console.log("Resposta retornada: " + JSON.stringify(response));
+                
       assert.deepStrictEqual(response, expected);      
 });
 
@@ -174,9 +175,6 @@ Then('O corpo da resposta nao deve conter',
 
       let notExpected = JSON.parse(dataTable.hashes()[0].RESPOSTA);            
       notExpected = replaceVariables(notExpected);
-
-      console.log("Resposta esperada: " + JSON.stringify(notExpected));
-      console.log("Resposta retornada: " + JSON.stringify(response));
       
       // Verifica se notExpected está contido em response
       const responseStr = JSON.stringify(response);

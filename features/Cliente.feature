@@ -1,4 +1,4 @@
-Feature: Testes da Calculadora via HTTP
+Feature: Cliente
 
  Scenario: Listar cliente pelo nome
   Given Eu realizo o login com o usuario
